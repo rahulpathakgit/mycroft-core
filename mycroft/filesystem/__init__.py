@@ -18,6 +18,7 @@
 
 import os
 from os.path import join, expanduser, isdir
+from shutil import copyfile
 
 __author__ = 'jdorleans'
 
@@ -58,3 +59,12 @@ class FileSystemAccess(object):
 
     def exists(self, filename):
         return os.path.exists(join(self.path, filename))
+
+    def copy(self, filename, source_path, dest_path):
+        try:
+            copyfile(self.source_path + '/' + self.file_source, self.dest_path + '/' + self.file_dest)
+            print self.name + " Success -- file copy from: " + self.file_source + " to: " + self.file_dest
+
+        except:
+            print self.name + " Failed -- file copy from: " + self.file_source + " to: " + self.file_dest
+        return 1
